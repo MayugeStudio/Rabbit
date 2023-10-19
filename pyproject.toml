@@ -3,6 +3,8 @@ name = "rabbit-todo"
 version = "0.1.0"
 description = "The Simple Todo Tool in CLI"
 authors = ["Mayuge <mayuge.studio.public@gmail.com>"]
+homepage = "https://github.com/MayugeStudio"
+repository = "https://github.com/MayugeStudio/rabbit-todo"
 readme = "README.md"
 
 [tool.poetry.dependencies]
