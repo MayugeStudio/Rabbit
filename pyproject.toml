@@ -9,11 +9,12 @@ readme = "README.md"
 license = "Apache-2.0"
 keywords = ["todo", "cli", "simple", "task-management", "project-management", "productivity", "organizer"]
 classifiers = [
-    "Environment::Console",
-    "License::OSI Approved::Apache Software License",
-    "Programming Language::Python::3",
-    "Programming Language::Python::3.11",
-    "Typing::Typed"
+    "Environment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Utilities",
+    "Typing :: Typed"
 ]
 
 [tool.poetry.dependencies]
