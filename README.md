@@ -1,3 +1,6 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rabbit-todo)
+![GitHub](https://img.shields.io/github/license/MayugeStudio/rabbit-todo)
+
 # :rabbit: Rabbit :rabbit:
 
 ## The Simple Todo Tool in CLI
