@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[REQUEST]"
+title: "\U0001F4A1"
 labels: feature request
-assignees: ''
+assignees: MayugeStudio
 
 ---
 
