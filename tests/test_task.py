@@ -1,3 +1,4 @@
+# --- First Party Library ---
 from rabbit_todo.core.task import Task
 
 
@@ -9,11 +10,7 @@ class TestTask:
         assert task.completed is False
 
     def test_from_dict(self):
-        data = {
-            "id"       : 1,
-            "name"     : "Test Task",
-            "completed": True
-        }
+        data = {"id": 1, "name": "Test Task", "completed": True}
         task = Task.from_dict(data)
         assert task.id == 1
         assert task.name == "Test Task"

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+# --- Standard Library ---
 from typing import Any
 
 
@@ -16,11 +17,7 @@ class Task:
         return instance
 
     def to_dict(self) -> dict[str, int | str | bool]:
-        return {
-            "id"       : self._id,
-            "name"     : self._name,
-            "completed": self._completed
-        }
+        return {"id": self._id, "name": self._name, "completed": self._completed}
 
     @property
     def id(self) -> int:

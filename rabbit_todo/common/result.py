@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+# --- Standard Library ---
 from typing import Generic
 from typing import TypeVar
 
-T = TypeVar('T')
-B = TypeVar('B')
+T = TypeVar("T")
+B = TypeVar("B")
 
 
 class Result(Generic[T]):

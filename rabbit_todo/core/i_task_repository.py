@@ -1,7 +1,10 @@
-from abc import ABC, abstractmethod
+# --- Standard Library ---
+from abc import ABC
+from abc import abstractmethod
 
-from rabbit_todo.core.task import Task
+# --- First Party Library ---
 from rabbit_todo.common.result import Result
+from rabbit_todo.core.task import Task
 
 
 class ITaskRepository(ABC):
