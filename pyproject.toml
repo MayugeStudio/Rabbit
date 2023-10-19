@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "rabbit-todo"
 version = "0.1.0"
-description = ""
+description = "The Simple Todo Tool in CLI"
 authors = ["Mayuge <mayuge.studio.public@gmail.com>"]
 readme = "README.md"
 
