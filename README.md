@@ -1,4 +1,4 @@
-# Rabbit
+# :rabbit: Rabbit :rabbit:
 
 ## The Simple Todo Tool in CLI
 
