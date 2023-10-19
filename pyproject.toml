@@ -6,6 +6,15 @@ authors = ["Mayuge <mayuge.studio.public@gmail.com>"]
 homepage = "https://github.com/MayugeStudio"
 repository = "https://github.com/MayugeStudio/rabbit-todo"
 readme = "README.md"
+license = "Apache-2.0"
+keywords = ["todo", "cli", "simple", "task-management", "project-management", "productivity", "organizer"]
+classifiers = [
+    "Environment::Console",
+    "License::OSI Approved::Apache Software License",
+    "Programming Laungage::Python::3",
+    "Programming Laungage::Python::3.11",
+    "Typing::Typed"
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
