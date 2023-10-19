@@ -1,8 +1,8 @@
 """
 This module contains common messages used in the todo project.
 """
+# --- Third Party Library ---
 from colorama import Fore
-
 
 """
 PREFIXES

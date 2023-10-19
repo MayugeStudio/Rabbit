@@ -1,7 +1,10 @@
+# --- Standard Library ---
 import sys
 
+# --- Third Party Library ---
 import click
 
+# --- First Party Library ---
 from rabbit_todo.common.messages import SuccessMessage
 from rabbit_todo.core.task import Task
 from rabbit_todo.core.task_id_generator import TaskIdGenerator

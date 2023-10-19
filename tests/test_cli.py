@@ -1,6 +1,10 @@
+# --- Standard Library ---
 import json
 
+# --- Third Party Library ---
 from click.testing import CliRunner
+
+# --- First Party Library ---
 from rabbit_todo.cmd.cli import cli
 from rabbit_todo.common.messages import ERROR_NOT_FOUND
 from rabbit_todo.common.messages import SuccessMessage
@@ -29,7 +33,7 @@ def test_remove_task():
 
         with open("tasks.json", "r") as file:
             file_content = json.load(file)
-        tasks = file_content['tasks']
+        tasks = file_content["tasks"]
         assert result.exit_code == 0
         assert SuccessMessage.remove_task("Test Task 1") in result.output
         assert len(tasks) == 0

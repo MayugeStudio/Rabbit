@@ -1,5 +1,7 @@
+# --- Standard Library ---
 import json
 
+# --- First Party Library ---
 from rabbit_todo.common.messages import ERROR_FILE_CORRUPTED
 from rabbit_todo.common.messages import ERROR_NOT_FOUND
 from rabbit_todo.common.result import Result

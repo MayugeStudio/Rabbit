@@ -1,18 +1,16 @@
+# --- Third Party Library ---
 import pytest
 
+# --- First Party Library ---
 from rabbit_todo.common.result import Result
+from rabbit_todo.core.i_task_repository import ITaskRepository
 from rabbit_todo.core.task import Task
 from rabbit_todo.core.task_id_generator import TaskIdGenerator
-from rabbit_todo.core.i_task_repository import ITaskRepository
 
 
 class InMemoryTaskRepository(ITaskRepository):
     def __init__(self):
-        self._tasks = [
-            Task(1, "Test Task 1"),
-            Task(2, "Test Task 2"),
-            Task(3, "Test Task 3")
-        ]
+        self._tasks = [Task(1, "Test Task 1"), Task(2, "Test Task 2"), Task(3, "Test Task 3")]
 
     def get_all(self) -> Result[list[Task]]:
         return Result.ok(self._tasks)
