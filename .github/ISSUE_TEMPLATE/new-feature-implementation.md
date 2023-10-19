@@ -1,7 +1,7 @@
 ---
-name: Custom issue template
+name: New feature implementation
 about: Describe this issue template's purpose here.
-title: "[FEAT]"
+title: "✨"
 labels: feature implementation
 assignees: ''
 
