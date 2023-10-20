@@ -1,5 +1,19 @@
+"""
+JSON Task Repository
+
+Main Class:
+- JsonTaskRepository: Simple Json Task Repository.
+                      Saves tasks to json file and loads tasks from json file.
+
+Dependencies:
+- rabbit_todo.core.i_task_repository: ITaskRepository class is base class of Json Task Repository.
+- rabbit_todo.core.task: Task class.
+- rabbit_todo.common.result: Result class used for error handling.
+"""
+
 # --- Standard Library ---
 import json
+from typing import Union
 
 # --- First Party Library ---
 from rabbit_todo.common.messages import ERROR_FILE_CORRUPTED
@@ -10,11 +24,13 @@ from rabbit_todo.core.task import Task
 
 
 class JsonTaskRepository(ITaskRepository):
+    """Saves tasks to json file and loads tasks from json file"""
+
     def __init__(self, file_path: str = "tasks.json"):
         self.file_path = file_path
-        self.content: dict[str, list[dict[str, int | bool | str]]] = {"tasks": []}
+        self.content: dict[str, list[dict[str, Union[int, bool, str]]]] = {"tasks": []}
 
-    def _load_json(self) -> Result[dict[str, list[dict[str, int | bool | str]]]]:
+    def _load_json(self) -> Result[dict[str, list[dict[str, Union[int, bool, str]]]]]:
         try:
             with open(self.file_path, "r") as file:
                 self.content = json.load(file)
