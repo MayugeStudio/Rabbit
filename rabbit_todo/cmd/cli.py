@@ -1,3 +1,9 @@
+"""
+Rabbit Todo CLI
+
+This module provides command-line interface functionality for Rabbit Todo application.
+"""
+
 # --- Standard Library ---
 import sys
 
@@ -12,18 +18,20 @@ from rabbit_todo.io.json_task_repository import JsonTaskRepository
 
 
 def exit_with_error(message: str) -> None:
+    """Prints the provided message and exits the application with an error status."""
     print(message)
     sys.exit(1)
 
 
 @click.group
-def cli() -> None:  # TODO: Refactoring there codes
-    pass
+def cli() -> None:
+    """Main entry point for the Rabbit Todo CLI"""
 
 
 @cli.command("add")
 @click.argument("task-name", type=click.STRING)
 def add_task(task_name: str) -> None:
+    """Adds a new task with the given name to the repository."""
     repo = JsonTaskRepository()
 
     # Create task instance
@@ -45,6 +53,7 @@ def add_task(task_name: str) -> None:
 @cli.command("remove")
 @click.argument("task-id", type=click.INT)
 def remove_task(task_id: int) -> None:
+    """Removes a task with the given ID from the repository."""
     repo = JsonTaskRepository()
 
     # Get task instance
@@ -64,6 +73,7 @@ def remove_task(task_id: int) -> None:
 @cli.command("done")
 @click.argument("task-id", type=click.INT)
 def done_task(task_id: int) -> None:
+    """Marks a task with the given ID as completed."""
     repo = JsonTaskRepository()
 
     # Get task instance
@@ -83,6 +93,7 @@ def done_task(task_id: int) -> None:
 
 @cli.command("list")
 def list_task() -> None:
+    """Lists all tasks in the repository."""
     repo = JsonTaskRepository()
 
     # Get task instances
