@@ -2,11 +2,15 @@ name: Python Format
 
 on:
   push:
+    paths:
+      - '**.py'
     branches:
       - main
   pull_request:
     branches:
       - main
+    paths:
+      - '**.py'
 
 jobs:
   build:
@@ -22,10 +26,12 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+      - name: Install Poetry
         run: |
           python -m pip install --upgrade pip
           python -m pip install poetry
+      - name: Install dependencies
+        run: |
           poetry install
       - name: Format Check
         run: |
