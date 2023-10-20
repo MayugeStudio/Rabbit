@@ -7,18 +7,32 @@ homepage = "https://github.com/MayugeStudio"
 repository = "https://github.com/MayugeStudio/rabbit-todo"
 readme = "README.md"
 license = "Apache-2.0"
-keywords = ["todo", "cli", "simple", "task-management", "project-management", "productivity", "organizer"]
+keywords = [
+    "todo",
+    "cli",
+    "simple",
+    "task-management",
+    "project-management",
+    "productivity",
+    "organizer",
+    "terminal",
+    "agenda"
+]
 classifiers = [
     "Environment :: Console",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Topic :: Utilities",
     "Typing :: Typed"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 click = "^8.1.7"
 colorama = "^0.4.6"
 
@@ -61,6 +75,7 @@ no_implicit_optional = true
 warn_return_any = true
 warn_unused_ignores = true
 warn_redundant_casts = true
+exclude = "^tests/"
 
 [tool.flake8]
 max-line-length = 119
