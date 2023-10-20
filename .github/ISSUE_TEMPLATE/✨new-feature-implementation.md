@@ -1,8 +1,8 @@
 ---
-name: New feature implementation
+name: "✨New feature implementation"
 about: Describe this issue template's purpose here.
 title: "✨"
-labels: feature implementation
+labels: ''
 assignees: ''
 
 ---
