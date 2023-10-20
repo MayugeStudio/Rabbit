@@ -15,6 +15,6 @@ Usage:
 from rabbit_todo.cmd import cli
 
 
-def main():
+def main() -> None:
     """This is the entry point for the rabbit-todo."""
     cli()
