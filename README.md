@@ -1,6 +1,12 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rabbit-todo)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/rabbit-todo)
+![PyPI - Status](https://img.shields.io/pypi/status/rabbit-todo)
+![PyPI - Version](https://img.shields.io/pypi/v/rabbit-todo)
 ![GitHub](https://img.shields.io/github/license/MayugeStudio/rabbit-todo)
 [![Python Test](https://github.com/MayugeStudio/rabbit-todo/actions/workflows/python_test.yml/badge.svg)](https://github.com/MayugeStudio/rabbit-todo/actions/workflows/python_test.yml)
+
+
+
 # :rabbit: Rabbit :rabbit:
 
 ## The Simple Todo Tool in CLI
