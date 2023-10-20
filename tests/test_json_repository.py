@@ -9,7 +9,7 @@ from rabbit_todo.core.task import Task
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
 
 
-@pytest.fixture
+@pytest.fixture()
 def json_content_path(tmp_path):
     tasks = [Task(1, "Test Task 1"), Task(2, "Test Task 2"), Task(3, "Test Task 3")]
     path = str(tmp_path / "test.json")
@@ -19,7 +19,7 @@ def json_content_path(tmp_path):
     return path
 
 
-@pytest.fixture
+@pytest.fixture()
 def corrupted_json_content_path(tmp_path):
     path = str(tmp_path / "corrupted.json")
     with open(path, "w") as file:
@@ -27,12 +27,12 @@ def corrupted_json_content_path(tmp_path):
     return path
 
 
-@pytest.fixture
+@pytest.fixture()
 def task():
     return Task(100, "Test Task 1")
 
 
-@pytest.fixture
+@pytest.fixture()
 def existent_task():
     return Task(1, "Test Task 1")
 
