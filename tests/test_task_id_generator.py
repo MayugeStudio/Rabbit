@@ -36,7 +36,7 @@ class InMemoryTaskRepository(ITaskRepository):
         return Result.ok(True)
 
 
-@pytest.fixture
+@pytest.fixture()
 def task_repository():
     return InMemoryTaskRepository()
 
