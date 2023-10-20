@@ -5,9 +5,11 @@ name: Python package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -40,7 +42,7 @@ jobs:
         # check import order
         isort --profile black --check --line-length 119 --force-single-line-imports .
         # check code format
-        black --check --line-length 119 --check
+        black --check --line-length 119 --check .
     - name: Test with pytest
       run: |
         pytest tests/
