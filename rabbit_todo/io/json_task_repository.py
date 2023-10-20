@@ -32,7 +32,7 @@ class JsonTaskRepository(ITaskRepository):
 
     def _load_json(self) -> Result[dict[str, list[dict[str, Union[int, bool, str]]]]]:
         try:
-            with open(self.file_path, "r") as file:
+            with open(self.file_path, "r", encoding="utf-8") as file:
                 self.content = json.load(file)
                 return Result.ok(self.content)
         except FileNotFoundError:
@@ -41,7 +41,7 @@ class JsonTaskRepository(ITaskRepository):
             return Result.error(ERROR_FILE_CORRUPTED)
 
     def _save_tasks(self, tasks: list[Task]) -> None:
-        with open(self.file_path, "w") as file:
+        with open(self.file_path, "w", encoding="utf-8") as file:
             self.content["tasks"] = [t.to_dict() for t in tasks]
             json.dump(self.content, file, indent=4, ensure_ascii=False)
 
