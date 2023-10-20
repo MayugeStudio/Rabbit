@@ -76,6 +76,7 @@ warn_return_any = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 exclude = "^tests/"
+python_version = "3.9"
 
 [tool.flake8]
 max-line-length = 119
