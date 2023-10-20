@@ -16,4 +16,4 @@ class TestResult:
         assert result.is_success() is False
         with pytest.raises(RuntimeError) as info:
             result.unwrap()
-        assert info.value.message == "Result is not a success"
+        assert str(info.value) == "Result is not a success"
