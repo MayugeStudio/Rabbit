@@ -8,6 +8,7 @@ from click.testing import CliRunner
 from rabbit_todo.cmd.cli import cli
 from rabbit_todo.common.messages import ERROR_NOT_FOUND
 from rabbit_todo.common.messages import SuccessMessage
+from rabbit_todo.io.io_config.path_config import ROOT_DIR_PATH
 
 
 def test_add_task():
@@ -17,7 +18,7 @@ def test_add_task():
 
         assert result.exit_code == 0
         assert SuccessMessage.add_task("Test Task 1") in result.output
-        with open("tasks.json", "r") as file:
+        with ROOT_DIR_PATH.joinpath("tasks.json").open("r", encoding="utf-8") as file:
             file_content = json.load(file)
         tasks = file_content["tasks"]
         assert len(tasks) == 1
@@ -31,7 +32,7 @@ def test_remove_task():
         runner.invoke(cli, ["add", "Test Task 1"])  # type: ignore
         result = runner.invoke(cli, ["remove", "0"])  # type: ignore
 
-        with open("tasks.json", "r") as file:
+        with ROOT_DIR_PATH.joinpath("tasks.json").open("r", encoding="utf-8") as file:
             file_content = json.load(file)
         tasks = file_content["tasks"]
         assert result.exit_code == 0
@@ -56,10 +57,10 @@ def test_done_task():
 
         assert result.exit_code == 0
         assert SuccessMessage.mark_as_complete("Test Task 1") in result.output
-        with open("tasks.json", "r") as file:
-            content = json.load(file)
+        with ROOT_DIR_PATH.joinpath("tasks.json").open("r", encoding="utf-8") as file:
+            file_content = json.load(file)
 
-        tasks = content["tasks"]
+        tasks = file_content["tasks"]
         assert len(tasks) == 1
         assert tasks[0]["completed"] is True
 
