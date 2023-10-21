@@ -46,23 +46,13 @@ class JsonTaskRepository(ITaskRepository):
             json.dump(self.content, file, indent=4, ensure_ascii=False)
 
     def get_all(self) -> Result[list[Task]]:
-        # Get data
-        result = self._load_json()
-        if not result.is_success():
-            return Result.from_result(result)
-        data = result.unwrap()
-
-        # Execute
-        task_data = data["tasks"]
-        tasks = [Task.from_dict(task) for task in task_data]
-
-        return Result.ok(tasks)
+        return self._load_json().map(lambda data: [Task.from_dict(task) for task in data["tasks"]])
 
     def get_by_id(self, task_id: int) -> Result[Task]:
         # Get tasks
         result = self.get_all()
         if not result.is_success():
-            return Result.from_result(result)
+            return Result.error(result)
         tasks = result.unwrap()
 
         # Execute
@@ -76,7 +66,7 @@ class JsonTaskRepository(ITaskRepository):
         # Get tasks
         result = self.get_all()
         if not result.is_success():
-            return Result.from_result(result)
+            return Result.error(result)
         tasks = result.unwrap()
 
         # Execute
@@ -91,7 +81,7 @@ class JsonTaskRepository(ITaskRepository):
         # Get tasks
         result = self.get_all()
         if not result.is_success():
-            return Result.from_result(result)
+            return Result.error(result)
         tasks = result.unwrap()
 
         # Execute
@@ -107,7 +97,7 @@ class JsonTaskRepository(ITaskRepository):
         # Get tasks
         result = self.get_all()
         if not result.is_success():
-            return Result.from_result(result)
+            return Result.error(result)
         tasks = result.unwrap()
 
         # Execute
