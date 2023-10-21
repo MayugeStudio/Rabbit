@@ -34,8 +34,8 @@ class Task:
         self._name = name
         self._notes = notes
         self._completed = False
-        self._created_at = created_at
-        self._updated_at = updated_at
+        self._created_at = created_at if created_at else datetime.now()
+        self._updated_at = updated_at if updated_at else datetime.now()
 
     @classmethod
     def from_dict(cls, data: dict[str, int | str | bool]) -> Task:
@@ -77,6 +77,16 @@ class Task:
     def completed(self) -> bool:
         """Returns whether the task is completed or not"""
         return self._completed
+
+    @property
+    def created_at(self) -> datetime:
+        """Returns the date and time the task was created"""
+        return self._created_at
+
+    @property
+    def updated_at(self) -> datetime:
+        """Returns the date and time the task was updated"""
+        return self._updated_at
 
     def mark_as_complete(self) -> None:
         """Marks the task as complete"""
