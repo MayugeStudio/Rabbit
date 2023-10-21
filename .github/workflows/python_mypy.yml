@@ -1,4 +1,4 @@
-name: Python Pylint
+name: Python Mypy
 
 on:
   push:
