@@ -32,7 +32,7 @@ class TaskIdGenerator:
         """Retrieves the current max task id, increments it by one and returns the result."""
         result = self._repository.get_all()
         if not result.is_success():
-            return Result.from_result(result)
+            return Result.error(result)
 
         tasks = result.unwrap()
         if not tasks:
