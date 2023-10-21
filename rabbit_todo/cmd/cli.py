@@ -36,18 +36,18 @@ def add_task(task_name: str) -> None:
 
     # Create task instance
     generator = TaskIdGenerator(repo)
-    result = generator.next_id()
-    if not result.is_success:
-        exit_with_error(result.message)
-    next_id = result.unwrap()
+    res1 = generator.next_id()
+    if not res1.is_success():
+        exit_with_error(res1.message)
+    next_id = res1.unwrap()
     task = Task(next_id, task_name)
 
     # Execute
-    result = repo.add(task)
-    if result.is_success():
+    res2 = repo.add(task)
+    if res2.is_success():
         print(SuccessMessage.add_task(task_name))
     else:
-        exit_with_error(result.message)
+        exit_with_error(res2.message)
 
 
 @cli.command("remove")
@@ -57,17 +57,17 @@ def remove_task(task_id: int) -> None:
     repo = JsonTaskRepository()
 
     # Get task instance
-    result = repo.get_by_id(task_id)
-    if not result.is_success():
-        exit_with_error(result.message)
-    task = result.unwrap()
+    res1 = repo.get_by_id(task_id)
+    if not res1.is_success():
+        exit_with_error(res1.message)
+    task = res1.unwrap()
 
     # Execute
-    result = repo.remove(task)
-    if result.is_success():
+    res2 = repo.remove(task)
+    if res2.is_success():
         print(SuccessMessage.remove_task(task.name))
     else:
-        exit_with_error(result.message)
+        exit_with_error(res2.message)
 
 
 @cli.command("done")
@@ -77,18 +77,18 @@ def done_task(task_id: int) -> None:
     repo = JsonTaskRepository()
 
     # Get task instance
-    result = repo.get_by_id(task_id)
-    if not result.is_success():
-        exit_with_error(result.message)
-    task = result.unwrap()
+    res1 = repo.get_by_id(task_id)
+    if not res1.is_success():
+        exit_with_error(res1.message)
+    task = res1.unwrap()
 
     # Execute
     task.mark_as_complete()
-    result = repo.update(task)
-    if result.is_success():
+    res2 = repo.update(task)
+    if res2.is_success():
         print(SuccessMessage.mark_as_complete(task.name))
     else:
-        exit_with_error(result.message)
+        exit_with_error(res2.message)
 
 
 @cli.command("list")
