@@ -33,18 +33,20 @@ class Task:
         id_ = data["id"]
         name = data["name"]
         completed = data["completed"]
+        notes = data["notes"]
 
         assert isinstance(id_, int)
         assert isinstance(name, str)
         assert isinstance(completed, bool)
+        assert isinstance(notes, str)
 
-        instance = cls(id_, name)
+        instance = cls(id_, name, notes=notes)
         instance._completed = completed
         return instance
 
     def to_dict(self) -> dict[str, int | str | bool]:
         """Converts the task to dictionary"""
-        return {"id": self._id, "name": self._name, "completed": self._completed}
+        return {"id": self._id, "name": self._name, "completed": self._completed, "notes": self._notes}
 
     @property
     def id(self) -> int:

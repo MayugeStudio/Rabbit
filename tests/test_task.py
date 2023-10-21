@@ -10,11 +10,12 @@ class TestTask:
         assert task.completed is False
 
     def test_from_dict(self):
-        data = {"id": 1, "name": "Test Task", "completed": True}
+        data = {"id": 1, "name": "Test Task", "completed": True, "notes": "Test Notes"}
         task = Task.from_dict(data)
         assert task.id == 1
         assert task.name == "Test Task"
         assert task.completed is True
+        assert task.notes == "Test Notes"
 
     def test_to_dict(self):
         task = Task(1, "Test Task")
