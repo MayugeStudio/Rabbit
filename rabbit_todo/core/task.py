@@ -15,17 +15,27 @@ Note:
 from __future__ import annotations
 
 # --- Standard Library ---
+from datetime import datetime
 from typing import Any
 
 
 class Task:
     """Represents a single task"""
 
-    def __init__(self, id_: int, name: str, notes: str = "") -> None:
+    def __init__(
+        self,
+        id_: int,
+        name: str,
+        notes: str = "",
+        created_at: datetime | None = None,
+        updated_at: datetime | None = None,
+    ) -> None:
         self._id = id_
         self._name = name
         self._notes = notes
         self._completed = False
+        self._created_at = created_at
+        self._updated_at = updated_at
 
     @classmethod
     def from_dict(cls, data: dict[str, int | str | bool]) -> Task:
