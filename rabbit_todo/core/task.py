@@ -21,9 +21,10 @@ from typing import Any
 class Task:
     """Represents a single task"""
 
-    def __init__(self, id_: int, name: str):
+    def __init__(self, id_: int, name: str, notes: str = "") -> None:
         self._id = id_
         self._name = name
+        self._notes = notes
         self._completed = False
 
     @classmethod
@@ -54,6 +55,11 @@ class Task:
     def name(self) -> str:
         """Returns the name of the task"""
         return self._name
+
+    @property
+    def notes(self) -> str:
+        """Returns the notes of the task"""
+        return self._notes
 
     @property
     def completed(self) -> bool:
