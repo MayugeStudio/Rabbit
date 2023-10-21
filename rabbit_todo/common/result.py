@@ -33,12 +33,12 @@ class Result(Generic[T]):
 
     @classmethod
     def ok(cls, value: T) -> Result[T]:
-        """Constructs the result with the given value"""
+        """Constructs the result with the given value."""
         return cls(value=value)
 
     @classmethod
     def error(cls, message_or_result: str | Result[B]) -> Result[T]:
-        """Constructs the result with the given error message"""
+        """Constructs the result with the given error message or the result."""
         if isinstance(message_or_result, str):
             return Result(value=None, error_message=message_or_result)
         if isinstance(message_or_result, Result):
@@ -48,14 +48,18 @@ class Result(Generic[T]):
 
     @property
     def message(self) -> str:
-        """Returns the error message if it exists"""
+        """Returns the error message if it exists."""
         return self._message or "Unknown error occurred."
 
     def is_success(self) -> bool:
-        """Returns true if the result is success otherwise false"""
+        """Returns true if the result is success otherwise false."""
         return self._value is not None
 
     def map(self, func: Callable[[T], V]) -> Result[V]:
+        """
+        Applies the given function to the result's value if it's a success.
+        If it's an error, return a new Result with the same error message.
+        """
         if self.is_success():
             assert self._value is not None
             return Result(value=func(self._value), error_message=None)
