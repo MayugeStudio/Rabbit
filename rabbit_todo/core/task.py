@@ -29,8 +29,16 @@ class Task:
     @classmethod
     def from_dict(cls, data: dict[str, int | str | bool]) -> Task:
         """Instantiates a Task from a dictionary"""
-        instance = cls(data["id"], data["name"])
-        instance._completed = data["completed"]
+        id_ = data["id"]
+        name = data["name"]
+        completed = data["completed"]
+
+        assert isinstance(id_, int)
+        assert isinstance(name, str)
+        assert isinstance(completed, bool)
+
+        instance = cls(id_, name)
+        instance._completed = completed
         return instance
 
     def to_dict(self) -> dict[str, int | str | bool]:
