@@ -18,11 +18,10 @@ from __future__ import annotations
 from typing import Callable
 from typing import Generic
 from typing import TypeVar
-from typing import Union
-from typing import overload
 
 T = TypeVar("T")
 B = TypeVar("B")
+V = TypeVar("V")
 
 
 class Result(Generic[T]):
@@ -38,24 +37,14 @@ class Result(Generic[T]):
         return cls(value=value)
 
     @classmethod
-    @overload
-    def error(cls, error_message: str) -> Result[T]:
-        ...
-
-    @classmethod
-    @overload
-    def error(cls, result: Result[B]) -> Result[T]:
-        ...
-
-    @classmethod
-    def error(cls, arg: Union[str, Result[B]]) -> Result[T]:
+    def error(cls, message_or_result: str | Result[B]) -> Result[T]:
         """Constructs the result with the given error message"""
-        if isinstance(arg, str):
-            return cls(value=None, error_message=arg)
-        elif isinstance(arg, Result):
-            return cls(value=None, error_message=arg.message)
+        if isinstance(message_or_result, str):
+            return Result(value=None, error_message=message_or_result)
+        if isinstance(message_or_result, Result):
+            return Result(value=None, error_message=message_or_result.message)
 
-        raise TypeError(arg)
+        raise TypeError(message_or_result)
 
     @property
     def message(self) -> str:
@@ -64,14 +53,13 @@ class Result(Generic[T]):
 
     def is_success(self) -> bool:
         """Returns true if the result is success otherwise false"""
-        return True if self._value is not None else False
+        return self._value is not None
 
-    def map(self, func: Callable[[T], B]) -> Result[B]:
+    def map(self, func: Callable[[T], V]) -> Result[V]:
         if self.is_success():
             assert self._value is not None
-            return Result.ok(func(self._value))
-        else:
-            return Result.error(self._message or "Unknown error occurred.")
+            return Result(value=func(self._value), error_message=None)
+        return Result(value=None, error_message=self._message or "Unknown error occurred.")
 
     def unwrap(self) -> T:
         """Retrieves the value from the result. If not success, raises a RuntimeError."""
