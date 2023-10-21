@@ -24,6 +24,14 @@ class TestTask:
         assert data["name"] == "Test Task"
         assert data["completed"] is False
 
+    def test_to_dict_with_notes(self):
+        task = Task(1, "Test Task", notes="Test Notes")
+        data = task.to_dict()
+        assert data["id"] == 1
+        assert data["name"] == "Test Task"
+        assert data["completed"] is False
+        assert data["notes"] == "Test Notes"
+
     def test_mark_as_complete(self):
         task = Task(1, "Test Task")
         task.mark_as_complete()
