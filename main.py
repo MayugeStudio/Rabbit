@@ -1,3 +1,4 @@
+# --- Standard Library ---
 import json
 import re
 import sys
@@ -10,25 +11,22 @@ class Task:
         self.is_completed = is_completed
 
     def to_dict(self) -> dict[str, str | bool]:
-        return {
-            "name"       : self.name,
-            "isCompleted": self.is_completed
-        }
+        return {"name": self.name, "isCompleted": self.is_completed}
 
 
 def readFile(filename: str) -> list[str]:
-    with open(filename, 'r', encoding='utf-8') as f:
+    with open(filename, "r", encoding="utf-8") as f:
         lines = f.readlines()
     return lines
 
 
 def saveTasks(filename: str, tasks: list[Task]) -> None:
-    with open(filename, 'w', encoding='utf-8') as f:
+    with open(filename, "w", encoding="utf-8") as f:
         json.dump([task.to_dict() for task in tasks], f, indent=4, ensure_ascii=False)
 
 
 def taskInfo(line: str) -> Optional[tuple[str, bool]]:
-    mch = re.search(r'^-\s?\[\s?([xX])?\s?]\s?(.+)$', line.strip())
+    mch = re.search(r"^-\s?\[\s?([xX])?\s?]\s?(.+)$", line.strip())
     return (mch.group(2).strip(), bool(mch.group(1))) if mch else None
 
 
@@ -39,7 +37,7 @@ def parseLine(line: str) -> Optional[Task]:
 
 
 def isValidLine(line: str) -> bool:
-    return bool(re.match(r'^-\s?\[ ?([xX])? ?]\s?.+$', line))
+    return bool(re.match(r"^-\s?\[ ?([xX])? ?]\s?.+$", line))
 
 
 def parseLines(lines: list[str]) -> list[Task]:
@@ -48,11 +46,11 @@ def parseLines(lines: list[str]) -> list[Task]:
 
 
 def main() -> int:
-    lines = readFile('rabbit.todo')
+    lines = readFile("rabbit.todo")
     tasks = parseLines(lines)
-    saveTasks('tasks.json', tasks)
+    saveTasks("tasks.json", tasks)
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())

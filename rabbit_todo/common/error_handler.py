@@ -10,3 +10,7 @@ class RabbitTodoException(Exception):
     @property
     def code(self) -> str:
         return self._code + ";"
+
+
+FILE_CORRUPTED_ERROR_CODE = "0"
+TASK_NOT_FOUND_ERROR_CODE = "1"
