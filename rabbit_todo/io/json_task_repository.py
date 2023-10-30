@@ -22,8 +22,8 @@ from rabbit_todo.common.error_handler import RabbitTodoException
 from rabbit_todo.core.i_task_repository import ITaskRepository
 from rabbit_todo.core.task import Task
 from rabbit_todo.io.file_handler import FileHandler
-from rabbit_todo.io.io_config.json_config import INITIAL_TASKS_CONTENT
-from rabbit_todo.io.io_config.json_config import TASKS_KEY
+from rabbit_todo.io.json_config import INITIAL_TASKS_CONTENT
+from rabbit_todo.io.json_config import TASKS_KEY
 
 
 class JsonTaskRepository(ITaskRepository):

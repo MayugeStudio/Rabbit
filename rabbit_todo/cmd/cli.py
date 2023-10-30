@@ -15,8 +15,8 @@ from rabbit_todo.common.messages import SuccessMessage
 from rabbit_todo.core.task import Task
 from rabbit_todo.core.task_id_generator import TaskIdGenerator
 from rabbit_todo.io.file_handler import FileHandler
-from rabbit_todo.io.io_config.path_config import ROOT_DIR_PATH
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
+from rabbit_todo.io.path_config import ROOT_DIR_PATH
 
 
 def exit_with_error(message: str) -> None:

@@ -8,7 +8,7 @@ from click.testing import CliRunner
 from rabbit_todo.cmd.cli import cli
 from rabbit_todo.common.messages import ERROR_NOT_FOUND
 from rabbit_todo.common.messages import SuccessMessage
-from rabbit_todo.io.io_config.path_config import ROOT_DIR_PATH
+from rabbit_todo.io.path_config import ROOT_DIR_PATH
 
 
 def test_add_task():
