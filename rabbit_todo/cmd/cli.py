@@ -11,7 +11,9 @@ import sys
 import click
 
 # --- First Party Library ---
-from rabbit_todo.common.messages import SuccessMessage
+from rabbit_todo.common.messages import add_task_success_message
+from rabbit_todo.common.messages import mark_task_as_complete_success_message
+from rabbit_todo.common.messages import remove_task_success_message
 from rabbit_todo.core.task import Task
 from rabbit_todo.core.task_id_generator import TaskIdGenerator
 from rabbit_todo.io.file_handler import FileHandler
@@ -39,18 +41,14 @@ def add_task(task_name: str) -> None:
 
     # Create task instance
     generator = TaskIdGenerator(repo)
-    res1 = generator.next_id()
-    if not res1.is_success():
-        exit_with_error(res1.message)
-    next_id = res1.unwrap()
+    next_id = generator.next_id()
     task = Task(next_id, task_name)
 
     # Execute
-    res2 = repo.add(task)
-    if res2.is_success():
-        print(SuccessMessage.add_task(task_name))
-    else:
-        exit_with_error(res2.message)
+    repo.add(task)
+
+    # Message
+    add_task_success_message(task.name)
 
 
 @cli.command("remove")
@@ -61,17 +59,13 @@ def remove_task(task_id: int) -> None:
     repo = JsonTaskRepository(file_handler)
 
     # Get task instance
-    res1 = repo.get_by_id(task_id)
-    if not res1.is_success():
-        exit_with_error(res1.message)
-    task = res1.unwrap()
+    task = repo.get_by_id(task_id)
 
     # Execute
-    res2 = repo.remove(task)
-    if res2.is_success():
-        print(SuccessMessage.remove_task(task.name))
-    else:
-        exit_with_error(res2.message)
+    repo.remove(task)
+
+    # Message
+    remove_task_success_message(task.name)
 
 
 @cli.command("done")
@@ -82,18 +76,14 @@ def done_task(task_id: int) -> None:
     repo = JsonTaskRepository(file_handler)
 
     # Get task instance
-    res1 = repo.get_by_id(task_id)
-    if not res1.is_success():
-        exit_with_error(res1.message)
-    task = res1.unwrap()
+    task = repo.get_by_id(task_id)
 
     # Execute
     task.mark_as_complete()
-    res2 = repo.update(task)
-    if res2.is_success():
-        print(SuccessMessage.mark_as_complete(task.name))
-    else:
-        exit_with_error(res2.message)
+    repo.update(task)
+
+    # Message
+    mark_task_as_complete_success_message(task.name)
 
 
 @cli.command("list")
@@ -103,10 +93,7 @@ def list_task() -> None:
     repo = JsonTaskRepository(file_handler)
 
     # Get task instances
-    result = repo.get_all()
-    if not result.is_success():
-        exit_with_error(result.message)
-    tasks = result.unwrap()
+    tasks = repo.get_all()
 
     # Execute
     for task in tasks:
