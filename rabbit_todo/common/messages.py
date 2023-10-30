@@ -5,13 +5,6 @@ This module contains common messages used in the todo project.
 from colorama import Fore
 
 INFO_PREFIX = Fore.GREEN + "INFO" + Fore.RESET + ": "
-WARNING_PREFIX = Fore.YELLOW + "WARNING" + Fore.RESET + ": "
-ERROR_PREFIX = Fore.RED + "ERROR" + Fore.RESET + ": "
-
-
-ERROR_FILE_CORRUPTED = ERROR_PREFIX + "Task file was corrupted."
-ERROR_DUPLICATE_TASK_NAME = ERROR_PREFIX + "Task name was duplicated."
-ERROR_NOT_FOUND = ERROR_PREFIX + "Task not found. Please try again."
 
 
 class SuccessMessage:
