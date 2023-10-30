@@ -1,7 +1,5 @@
 """
 Rabbit Todo CLI
-
-This module provides command-line interface functionality for Rabbit Todo application.
 """
 
 # --- Standard Library ---

@@ -1,15 +1,5 @@
 """
-Task class.
-
-Main Class:
-- Task: Represents a single task.
-
-Dependencies:
-    This class doesn't have any dependencies.
-
-Note:
-    The identity of task classes managed by ID.
-    Task classes with the same ID are considered the same.
+Task class
 """
 
 from __future__ import annotations

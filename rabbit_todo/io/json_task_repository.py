@@ -1,15 +1,8 @@
 """
 JSON Task Repository
-
-Main Class:
-- JsonTaskRepository: Simple Json Task Repository.
-                      Saves tasks to json file and loads tasks from json file.
-
-Dependencies:
-- rabbit_todo.core.i_task_repository: ITaskRepository class is base class of Json Task Repository.
-- rabbit_todo.core.task: Task class.
-- rabbit_todo.common.result: Result class used for error handling.
 """
+
+from __future__ import annotations
 
 # --- Standard Library ---
 import json
