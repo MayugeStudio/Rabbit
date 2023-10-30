@@ -74,7 +74,7 @@ class JsonTaskRepository(ITaskRepository):
                 self._save_tasks(tasks)
                 return
 
-        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE)
+        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE) from None
 
     def update(self, task: Task) -> None:
         # Get tasks
@@ -88,4 +88,4 @@ class JsonTaskRepository(ITaskRepository):
                 self._save_tasks(tasks)
                 return
 
-        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE)
+        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE) from None
