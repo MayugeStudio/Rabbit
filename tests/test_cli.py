@@ -6,9 +6,12 @@ from click.testing import CliRunner
 
 # --- First Party Library ---
 from rabbit_todo.cmd.cli import cli
-from rabbit_todo.common.messages import ERROR_NOT_FOUND
-from rabbit_todo.common.messages import SuccessMessage
-from rabbit_todo.io.io_config.path_config import ROOT_DIR_PATH
+from rabbit_todo.common.error_handler import ERROR_MESSAGES
+from rabbit_todo.common.error_handler import TASK_NOT_FOUND_ERROR_CODE
+from rabbit_todo.common.messages import add_task_success_message
+from rabbit_todo.common.messages import mark_task_as_complete_success_message
+from rabbit_todo.common.messages import remove_task_success_message
+from rabbit_todo.io.path_config import ROOT_DIR_PATH
 
 
 def test_add_task():
@@ -17,7 +20,7 @@ def test_add_task():
         result = runner.invoke(cli, ["add", "Test Task 1"])  # type: ignore
 
         assert result.exit_code == 0
-        assert SuccessMessage.add_task("Test Task 1") in result.output
+        assert add_task_success_message("Test Task 1") in result.output
         with ROOT_DIR_PATH.joinpath("tasks.json").open("r", encoding="utf-8") as file:
             file_content = json.load(file)
         tasks = file_content["tasks"]
@@ -36,7 +39,7 @@ def test_remove_task():
             file_content = json.load(file)
         tasks = file_content["tasks"]
         assert result.exit_code == 0
-        assert SuccessMessage.remove_task("Test Task 1") in result.output
+        assert remove_task_success_message("Test Task 1") in result.output
         assert len(tasks) == 0
 
 
@@ -46,7 +49,7 @@ def test_remove_not_found():
         result = runner.invoke(cli, ["remove", "0"])  # type: ignore
 
         assert result.exit_code == 1
-        assert ERROR_NOT_FOUND in result.output
+        assert ERROR_MESSAGES[TASK_NOT_FOUND_ERROR_CODE] in result.output
 
 
 def test_done_task():
@@ -56,7 +59,7 @@ def test_done_task():
         result = runner.invoke(cli, ["done", "0"])  # type: ignore
 
         assert result.exit_code == 0
-        assert SuccessMessage.mark_as_complete("Test Task 1") in result.output
+        assert mark_task_as_complete_success_message("Test Task 1") in result.output
         with ROOT_DIR_PATH.joinpath("tasks.json").open("r", encoding="utf-8") as file:
             file_content = json.load(file)
 
@@ -71,7 +74,7 @@ def test_done_task_not_found():
         result = runner.invoke(cli, ["done", "0"])  # type: ignore
 
         assert result.exit_code == 1
-        assert ERROR_NOT_FOUND in result.output
+        assert ERROR_MESSAGES[TASK_NOT_FOUND_ERROR_CODE] in result.output
 
 
 def test_list_tasks():

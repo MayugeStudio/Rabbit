@@ -5,6 +5,7 @@ import json
 import pytest
 
 # --- First Party Library ---
+from rabbit_todo.common.error_handler import RabbitTodoException
 from rabbit_todo.core.task import Task
 from rabbit_todo.io.file_handler import FileHandler
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
@@ -40,9 +41,7 @@ def rabbit_file_handler(tmp_path):
 class TestJsonRepository:
     def test_get_all(self, json_content, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, json_content)
-        result = repo.get_all()
-        assert result.is_success() is True
-        tasks = result.unwrap()
+        tasks = repo.get_all()
         assert len(tasks) == 3
         assert tasks[0].id == 1
         assert tasks[1].id == 2
@@ -50,21 +49,18 @@ class TestJsonRepository:
 
     def test_file_corrupted(self, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, "Corrupted Json Content")
-        result = repo.get_all()
-        assert result.is_success() is False
+        with pytest.raises(RabbitTodoException):
+            repo.get_all()
 
     def test_get_task_by_id(self, json_content, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, json_content)
-        result = repo.get_by_id(1)
-        assert result.is_success() is True
-        task = result.unwrap()
+        task = repo.get_by_id(1)
         assert task.id == 1
         assert task.name == "Test Task 1"
 
     def test_add_task(self, task, json_content, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, json_content)
-        result = repo.add(task)
-        assert result.unwrap() is True
+        repo.add(task)
 
         with rabbit_file_handler.open_file_r("tasks") as file:
             tasks = [Task.from_dict(task_dict) for task_dict in json.load(file)["tasks"]]
@@ -72,8 +68,7 @@ class TestJsonRepository:
 
     def test_remove_task(self, existent_task, json_content, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, json_content)
-        result = repo.remove(existent_task)
-        assert result.unwrap() is True
+        repo.remove(existent_task)
 
         with rabbit_file_handler.open_file_r("tasks") as file:
             tasks = [Task.from_dict(task_dict) for task_dict in json.load(file)["tasks"]]
@@ -82,8 +77,7 @@ class TestJsonRepository:
     def test_update_task(self, existent_task, json_content, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, json_content)
         existent_task.mark_as_complete()
-        result = repo.update(existent_task)
-        assert result.unwrap() is True
+        repo.update(existent_task)
 
-        result = repo.get_by_id(existent_task.id)
-        assert result.unwrap().completed is True
+        task = repo.get_by_id(existent_task.id)
+        assert task.completed is True
