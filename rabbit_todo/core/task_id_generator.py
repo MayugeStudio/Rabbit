@@ -18,7 +18,6 @@ Note:
 """
 
 # --- First Party Library ---
-from rabbit_todo.common.result import Result
 from rabbit_todo.core.i_task_repository import ITaskRepository
 
 
@@ -28,15 +27,12 @@ class TaskIdGenerator:
     def __init__(self, repository: ITaskRepository) -> None:
         self._repository = repository
 
-    def next_id(self) -> Result[int]:
+    def next_id(self) -> int:
         """Retrieves the current max task id, increments it by one and returns the result."""
-        result = self._repository.get_all()
-        if not result.is_success():
-            return Result.error(result)
+        tasks = self._repository.get_all()
 
-        tasks = result.unwrap()
         if not tasks:
-            return Result.ok(0)
+            return 0
 
         max_id = max(task.id for task in tasks)
-        return Result.ok(max_id + 1)
+        return max_id + 1
