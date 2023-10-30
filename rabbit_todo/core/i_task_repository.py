@@ -31,16 +31,16 @@ class ITaskRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def add(self, task: Task) -> bool:
+    def add(self, task: Task) -> None:
         """Add the task to the repository."""
         raise NotImplementedError
 
     @abstractmethod
-    def remove(self, task: Task) -> bool:
+    def remove(self, task: Task) -> None:
         """Remove the task from the repository."""
         raise NotImplementedError
 
     @abstractmethod
-    def update(self, task: Task) -> bool:
+    def update(self, task: Task) -> None:
         """Update the task in the repository."""
         raise NotImplementedError
