@@ -1,10 +1,20 @@
-.PHONY: format
+.PHONY: format test lint check
+
+target := rabbit_todo/
 
 format:
-	black . && isort .
+	black $(target)
+	isort $(target)
 
 test:
 	pytest tests/ -v
 
 lint:
-	pylint rabbit_todo
+	pylint $(target)
+
+check:
+	mypy
+	pflake8 $(target)
+	pylint $(target)
+
+all: format check test
