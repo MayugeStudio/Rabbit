@@ -13,7 +13,6 @@ Dependencies:
 
 # --- Standard Library ---
 import json
-from typing import Union
 
 # --- First Party Library ---
 from rabbit_todo.common.error_handler import FILE_CORRUPTED_ERROR_CODE
@@ -33,10 +32,10 @@ class JsonTaskRepository(ITaskRepository):
         self._file_handler = file_handler
         self._file_handler.initialize(initial_content)
 
-    def _load_json(self) -> dict[str, list[dict[str, Union[int, bool, str]]]]:
+    def _load_json(self) -> dict[str, list[dict[str, int | bool | str]]]:
         try:
             with self._file_handler.open_file_r(TASKS_KEY) as file:
-                content: dict[str, list[dict[str, Union[int, bool, str]]]] = json.load(file)
+                content: dict[str, list[dict[str, int | bool | str]]] = json.load(file)
                 return content
         except json.decoder.JSONDecodeError:
             raise RabbitTodoException(FILE_CORRUPTED_ERROR_CODE) from None
