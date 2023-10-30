@@ -86,5 +86,6 @@ class JsonTaskRepository(ITaskRepository):
                 idx = tasks.index(task_)
                 tasks[idx] = task
                 self._save_tasks(tasks)
+                return
 
         raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE)
