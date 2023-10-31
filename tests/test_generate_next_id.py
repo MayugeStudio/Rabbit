@@ -39,6 +39,6 @@ def task_repository():
     return InMemoryTaskRepository()
 
 
-def test_generate_next_id(self, task_repository):
+def test_generate_next_id(task_repository):
     next_id = generate_next_id(task_repository)
     assert next_id == 4

@@ -1,3 +1,8 @@
+"""
+Rabbit Todo Config File
+"""
+
+
 # --- Standard Library ---
 import json
 from pathlib import Path

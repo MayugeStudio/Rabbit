@@ -1,3 +1,7 @@
+"""
+Exit with error Function
+"""
+
 # --- Standard Library ---
 import sys
 

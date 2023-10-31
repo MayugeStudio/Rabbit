@@ -1,3 +1,7 @@
+"""
+Add Command
+"""
+
 # --- Third Party Library ---
 import click
 

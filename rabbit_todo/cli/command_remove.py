@@ -1,3 +1,7 @@
+"""
+Remove Command
+"""
+
 # --- Third Party Library ---
 import click
 
