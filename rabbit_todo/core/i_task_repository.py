@@ -1,12 +1,5 @@
 """
 ITaskRepository class.
-
-Main Class:
-- ITaskRepository: The abstract base class for all Task Repositories.
-
-Dependencies:
-- rabbit_todo.core.task: task class to be instantiated from ITaskRepository.
-- rabbit_todo.common.result: Result class used for error handling.
 """
 
 # --- Standard Library ---

@@ -11,7 +11,7 @@ from rabbit_todo.common.error_handler import TASK_NOT_FOUND_ERROR_CODE
 from rabbit_todo.common.messages import add_task_success_message
 from rabbit_todo.common.messages import mark_task_as_complete_success_message
 from rabbit_todo.common.messages import remove_task_success_message
-from rabbit_todo.io.path_config import ROOT_DIR_PATH
+from rabbit_todo.config import ROOT_DIR_PATH
 
 
 def test_add_task():

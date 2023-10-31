@@ -9,8 +9,8 @@ from typing import Generator
 from typing import TextIO
 
 # --- First Party Library ---
-from rabbit_todo.io.json_config import TASKS_KEY
-from rabbit_todo.io.path_config import TASKS_FILE_NAME
+from rabbit_todo.config import TASKS_FILE_NAME
+from rabbit_todo.config import TASKS_KEY
 
 
 class FileHandler:
