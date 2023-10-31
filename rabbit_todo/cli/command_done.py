@@ -8,8 +8,8 @@ import click
 # --- First Party Library ---
 from rabbit_todo.cli.exit_with_error import exit_with_error
 from rabbit_todo.common.error_handler import get_message_from_exception
-from rabbit_todo.common.messages import mark_task_as_complete_success_message
 from rabbit_todo.common.rabbit_error import RabbitTodoError
+from rabbit_todo.common.success_messages import mark_task_as_complete_success_message
 from rabbit_todo.config import ROOT_DIR_PATH
 from rabbit_todo.io.file_handler import FileHandler
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
