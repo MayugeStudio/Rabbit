@@ -6,7 +6,7 @@ from rabbit_todo.common.error_handler import TASK_NOT_FOUND_ERROR_CODE
 from rabbit_todo.common.error_handler import RabbitTodoException
 from rabbit_todo.core.i_task_repository import ITaskRepository
 from rabbit_todo.core.task import Task
-from rabbit_todo.core.task_id_generator import TaskIdGenerator
+from rabbit_todo.core.task_id_generator import generate_next_id
 
 
 class InMemoryTaskRepository(ITaskRepository):
@@ -39,8 +39,6 @@ def task_repository():
     return InMemoryTaskRepository()
 
 
-class TestTaskIdGenerator:
-    def test_next_id(self, task_repository):
-        gen = TaskIdGenerator(task_repository)
-        next_id = gen.next_id()
-        assert next_id == 4
+def test_generate_next_id(self, task_repository):
+    next_id = generate_next_id(task_repository)
+    assert next_id == 4

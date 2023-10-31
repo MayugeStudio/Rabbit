@@ -6,18 +6,12 @@ ID Generator for Task class.
 from rabbit_todo.core.i_task_repository import ITaskRepository
 
 
-class TaskIdGenerator:
+def generate_next_id(repository: ITaskRepository) -> int:
     """Generates the task id based on the current max task id"""
+    tasks = repository.get_all()
 
-    def __init__(self, repository: ITaskRepository) -> None:
-        self._repository = repository
+    if len(tasks) == 0:
+        return 0
 
-    def next_id(self) -> int:
-        """Retrieves the current max task id, increments it by one and returns the result."""
-        tasks = self._repository.get_all()
-
-        if not tasks:
-            return 0
-
-        max_id = max(task.id for task in tasks)
-        return max_id + 1
+    max_id = max(task.id for task in tasks)
+    return max_id + 1

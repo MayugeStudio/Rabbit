@@ -15,7 +15,7 @@ from rabbit_todo.common.messages import add_task_success_message
 from rabbit_todo.common.messages import mark_task_as_complete_success_message
 from rabbit_todo.common.messages import remove_task_success_message
 from rabbit_todo.core.task import Task
-from rabbit_todo.core.task_id_generator import TaskIdGenerator
+from rabbit_todo.core.task_id_generator import generate_next_id
 from rabbit_todo.io.file_handler import FileHandler
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
 from rabbit_todo.io.path_config import ROOT_DIR_PATH
@@ -41,8 +41,7 @@ def add_task(task_name: str) -> None:
 
     try:
         # Create task instance
-        generator = TaskIdGenerator(repo)
-        next_id = generator.next_id()
+        next_id = generate_next_id(repo)
         task = Task(next_id, task_name)
 
         # Execute
