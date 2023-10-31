@@ -51,7 +51,3 @@ class FileHandler:
                 file.close()
         else:
             raise ValueError
-
-    def exists(self) -> bool:
-        """Returns true if the directory exists, false otherwise."""
-        return self._root.exists()
