@@ -6,8 +6,8 @@ from click.testing import CliRunner
 
 # --- First Party Library ---
 from rabbit_todo.cli.cli import cli
-from rabbit_todo.common.error_handler import ERROR_MESSAGES
-from rabbit_todo.common.error_handler import TASK_NOT_FOUND_ERROR_CODE
+from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
+from rabbit_todo.common.error_handler import get_error_message
 from rabbit_todo.common.messages import add_task_success_message
 from rabbit_todo.common.messages import mark_task_as_complete_success_message
 from rabbit_todo.common.messages import remove_task_success_message
@@ -49,7 +49,7 @@ def test_remove_not_found():
         result = runner.invoke(cli, ["remove", "0"])  # type: ignore
 
         assert result.exit_code == 1
-        assert ERROR_MESSAGES[TASK_NOT_FOUND_ERROR_CODE] in result.output
+        assert get_error_message(TASK_NOT_FOUND_ERROR_CODE) in result.output
 
 
 def test_done_task():
@@ -74,7 +74,7 @@ def test_done_task_not_found():
         result = runner.invoke(cli, ["done", "0"])  # type: ignore
 
         assert result.exit_code == 1
-        assert ERROR_MESSAGES[TASK_NOT_FOUND_ERROR_CODE] in result.output
+        assert get_error_message(TASK_NOT_FOUND_ERROR_CODE) in result.output
 
 
 def test_list_tasks():

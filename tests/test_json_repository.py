@@ -5,7 +5,7 @@ import json
 import pytest
 
 # --- First Party Library ---
-from rabbit_todo.common.error_handler import RabbitTodoException
+from rabbit_todo.common.rabbit_exception import RabbitTodoException
 from rabbit_todo.core.task import Task
 from rabbit_todo.io.file_handler import FileHandler
 from rabbit_todo.io.json_task_repository import JsonTaskRepository

@@ -8,9 +8,9 @@ from __future__ import annotations
 import json
 
 # --- First Party Library ---
-from rabbit_todo.common.error_handler import FILE_CORRUPTED_ERROR_CODE
-from rabbit_todo.common.error_handler import TASK_NOT_FOUND_ERROR_CODE
-from rabbit_todo.common.error_handler import RabbitTodoException
+from rabbit_todo.common.error_code import FILE_CORRUPTED_ERROR_CODE
+from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
+from rabbit_todo.common.rabbit_exception import RabbitTodoException
 from rabbit_todo.config import INITIAL_TASKS_CONTENT
 from rabbit_todo.config import TASKS_KEY
 from rabbit_todo.core.i_task_repository import ITaskRepository

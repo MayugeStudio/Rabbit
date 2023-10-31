@@ -17,7 +17,7 @@ def cli() -> None:
     """Main entry point for the Rabbit Todo CLI"""
 
 
-cli.add_command(add_task)  # type: ignore
-cli.add_command(remove_task)  # type: ignore
-cli.add_command(list_task)  # type: ignore
-cli.add_command(done_task)  # type: ignore
+cli.add_command(add_task)
+cli.add_command(remove_task)
+cli.add_command(list_task)
+cli.add_command(done_task)
