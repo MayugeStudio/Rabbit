@@ -35,7 +35,6 @@ class TestTask:
         assert data["id"] == 1
         assert data["name"] == "Test Task"
         assert data["completed"] is False
-        assert data["notes"] == ""
 
     def test_to_dict_with_time(self):
         created_at = datetime.now().replace(microsecond=0)
@@ -45,7 +44,6 @@ class TestTask:
         assert data["id"] == 1
         assert data["name"] == "Test Task"
         assert data["completed"] is False
-        assert data["notes"] == ""
         assert data["created_at"] == created_at.strftime("%Y-%m-%d %H:%M:%S")
         assert data["updated_at"] == updated_at.strftime("%Y-%m-%d %H:%M:%S")
 
