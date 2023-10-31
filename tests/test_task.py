@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # --- First Party Library ---
-from rabbit_todo.core_models.task import Task
+from rabbit_todo.entity.task import Task
 
 
 class TestTask:
