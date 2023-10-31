@@ -4,11 +4,11 @@ import json
 # --- Third Party Library ---
 import pytest
 
+from rabbit_todo.domain.task import Task
 # --- First Party Library ---
-from rabbit_todo.common.rabbit_error import RabbitTodoError
-from rabbit_todo.entity.task import Task
-from rabbit_todo.io.file_handler import FileHandler
-from rabbit_todo.io.task_storage import TaskStorage
+from rabbit_todo.errors.rabbit_error import RabbitTodoError
+from rabbit_todo.storage.file_handler import FileHandler
+from rabbit_todo.storage.task_storage import TaskStorage
 
 
 @pytest.fixture()

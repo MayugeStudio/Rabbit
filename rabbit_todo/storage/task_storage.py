@@ -7,14 +7,14 @@ from __future__ import annotations
 # --- Standard Library ---
 import json
 
-# --- First Party Library ---
-from rabbit_todo.common.error_code import FILE_CORRUPTED_ERROR_CODE
-from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
-from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.config import INITIAL_TASKS_CONTENT
 from rabbit_todo.config import TASKS_KEY
-from rabbit_todo.entity.task import Task
-from rabbit_todo.io.file_handler import FileHandler
+from rabbit_todo.domain.task import Task
+# --- First Party Library ---
+from rabbit_todo.errors.error_code import FILE_CORRUPTED_ERROR_CODE
+from rabbit_todo.errors.error_code import TASK_NOT_FOUND_ERROR_CODE
+from rabbit_todo.errors.rabbit_error import RabbitTodoError
+from rabbit_todo.storage.file_handler import FileHandler
 
 
 class TaskStorage:

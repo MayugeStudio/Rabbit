@@ -4,10 +4,10 @@ import json
 import pytest
 
 # --- First Party Library ---
-from rabbit_todo.entity.generate_next_id import generate_next_id
-from rabbit_todo.entity.task import Task
-from rabbit_todo.io.file_handler import FileHandler
-from rabbit_todo.io.task_storage import TaskStorage
+from rabbit_todo.domain.generate_next_id import generate_next_id
+from rabbit_todo.domain.task import Task
+from rabbit_todo.storage.file_handler import FileHandler
+from rabbit_todo.storage.task_storage import TaskStorage
 
 
 @pytest.fixture()

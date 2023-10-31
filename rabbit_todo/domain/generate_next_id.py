@@ -3,7 +3,7 @@ ID Generator for Task class.
 """
 
 # --- First Party Library ---
-from rabbit_todo.io.task_storage import TaskStorage
+from rabbit_todo.storage.task_storage import TaskStorage
 
 
 def generate_next_id(storage: TaskStorage) -> int:

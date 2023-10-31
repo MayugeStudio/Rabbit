@@ -6,7 +6,7 @@ ErrorHandler
 from colorama import Fore
 
 # --- First Party Library ---
-from rabbit_todo.common.rabbit_error import RabbitTodoError
+from rabbit_todo.errors.rabbit_error import RabbitTodoError
 
 
 def error_prefix() -> str:

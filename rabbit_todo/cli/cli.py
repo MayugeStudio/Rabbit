@@ -6,10 +6,10 @@ Rabbit Todo CLI
 import click
 
 # --- Local Library ---
-from .command_add import add_task
-from .command_done import done_task
-from .command_list import list_task
-from .command_remove import remove_task
+from rabbit_todo.application.command.add import add_task
+from rabbit_todo.application.command.done import done_task
+from rabbit_todo.application.command.list import list_task
+from rabbit_todo.application.command.remove import remove_task
 
 
 @click.group
