@@ -1,44 +1,28 @@
 # --- Third Party Library ---
+import json
+
 import pytest
 
 # --- First Party Library ---
-from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
-from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.entity.generate_next_id import generate_next_id
-from rabbit_todo.entity.i_task_repository import ITaskRepository
 from rabbit_todo.entity.task import Task
-
-
-class InMemoryTaskRepository(ITaskRepository):
-    def __init__(self):
-        self._tasks = [Task(1, "Test Task 1"), Task(2, "Test Task 2"), Task(3, "Test Task 3")]
-
-    def get_all(self) -> list[Task]:
-        return self._tasks
-
-    def get_by_id(self, task_id: int) -> Task:
-        for task in self._tasks:
-            if task.id == task_id:
-                return task
-
-        raise RabbitTodoError(TASK_NOT_FOUND_ERROR_CODE)
-
-    def add(self, task: Task) -> None:
-        self._tasks.append(task)
-
-    def remove(self, task: Task) -> None:
-        self._tasks.remove(task)
-
-    def update(self, task: Task) -> None:
-        self._tasks.remove(task)
-        self._tasks.append(task)
+from rabbit_todo.io.file_handler import FileHandler
+from rabbit_todo.io.task_storage import TaskStorage
 
 
 @pytest.fixture()
-def task_repository():
-    return InMemoryTaskRepository()
+def json_content() -> str:
+    tasks = [Task(1, "Test Task 1"), Task(2, "Test Task 2"), Task(3, "Test Task 3")]
+    tasks = {"tasks": [task.to_dict() for task in tasks]}
+    return json.dumps(tasks)
 
 
-def test_generate_next_id(task_repository):
-    next_id = generate_next_id(task_repository)
+@pytest.fixture()
+def rabbit_file_handler(tmp_path):
+    return FileHandler(tmp_path)
+
+
+def test_generate_next_id(rabbit_file_handler, json_content):
+    storage = TaskStorage(rabbit_file_handler, json_content)
+    next_id = generate_next_id(storage)
     assert next_id == 4

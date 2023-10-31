@@ -1,5 +1,5 @@
 """
-JSON Task Repository
+Task Storage
 """
 
 from __future__ import annotations
@@ -13,12 +13,11 @@ from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
 from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.config import INITIAL_TASKS_CONTENT
 from rabbit_todo.config import TASKS_KEY
-from rabbit_todo.entity.i_task_repository import ITaskRepository
 from rabbit_todo.entity.task import Task
 from rabbit_todo.io.file_handler import FileHandler
 
 
-class JsonTaskRepository(ITaskRepository):
+class TaskStorage:
     """Saves tasks to json file and loads tasks from json file"""
 
     def __init__(self, file_handler: FileHandler, initial_content: str = INITIAL_TASKS_CONTENT):
@@ -39,10 +38,12 @@ class JsonTaskRepository(ITaskRepository):
             json.dump(content, file, indent=4, ensure_ascii=False)
 
     def get_all(self) -> list[Task]:
+        """Return all tasks"""
         tasks = self._load_json()
         return [Task.from_dict(task) for task in tasks["tasks"]]
 
     def get_by_id(self, task_id: int) -> Task:
+        """Return the task based on task_id"""
         # Get tasks
         tasks = self.get_all()
 
@@ -54,6 +55,7 @@ class JsonTaskRepository(ITaskRepository):
         raise RabbitTodoError(TASK_NOT_FOUND_ERROR_CODE) from None
 
     def add(self, task: Task) -> None:
+        """Add the task to the Storage"""
         # Get tasks
         tasks = self.get_all()
 
@@ -64,6 +66,7 @@ class JsonTaskRepository(ITaskRepository):
         self._save_tasks(tasks)
 
     def remove(self, task: Task) -> None:
+        """Remove the task from the Storage"""
         # Get tasks
         tasks = self.get_all()
 
@@ -77,6 +80,7 @@ class JsonTaskRepository(ITaskRepository):
         raise RabbitTodoError(TASK_NOT_FOUND_ERROR_CODE) from None
 
     def update(self, task: Task) -> None:
+        """Update the task in the Storage"""
         # Get tasks
         tasks = self.get_all()
 

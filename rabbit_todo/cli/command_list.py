@@ -11,14 +11,14 @@ from rabbit_todo.common.error_handler import get_message_from_exception
 from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.config import ROOT_DIR_PATH
 from rabbit_todo.io.file_handler import FileHandler
-from rabbit_todo.io.json_task_repository import JsonTaskRepository
+from rabbit_todo.io.task_storage import TaskStorage
 
 
 @click.command("list")
 def list_task() -> None:
     """Lists all tasks in the repository."""
     file_handler = FileHandler(ROOT_DIR_PATH)
-    repo = JsonTaskRepository(file_handler)
+    repo = TaskStorage(file_handler)
     try:
         # Get task instances
         tasks = repo.get_all()

@@ -3,12 +3,12 @@ ID Generator for Task class.
 """
 
 # --- First Party Library ---
-from rabbit_todo.entity.i_task_repository import ITaskRepository
+from rabbit_todo.io.task_storage import TaskStorage
 
 
-def generate_next_id(repository: ITaskRepository) -> int:
+def generate_next_id(storage: TaskStorage) -> int:
     """Generates the task id based on the current max task id"""
-    tasks = repository.get_all()
+    tasks = storage.get_all()
 
     if len(tasks) == 0:
         return 0

@@ -13,7 +13,7 @@ from rabbit_todo.config import ROOT_DIR_PATH
 from rabbit_todo.entity.generate_next_id import generate_next_id
 from rabbit_todo.entity.task import Task
 from rabbit_todo.io.file_handler import FileHandler
-from rabbit_todo.io.json_task_repository import JsonTaskRepository
+from rabbit_todo.io.task_storage import TaskStorage
 from rabbit_todo.success_messages import add_task_success_message
 
 
@@ -22,7 +22,7 @@ from rabbit_todo.success_messages import add_task_success_message
 def add_task(task_name: str) -> None:
     """Adds a new task with the given name to the repository."""
     file_handler = FileHandler(ROOT_DIR_PATH)
-    repo = JsonTaskRepository(file_handler)
+    repo = TaskStorage(file_handler)
 
     try:
         # Create task instance
