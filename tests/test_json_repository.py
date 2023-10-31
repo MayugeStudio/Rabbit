@@ -4,8 +4,8 @@ import json
 # --- Third Party Library ---
 import pytest
 
-from rabbit_todo.domain.task import Task
 # --- First Party Library ---
+from rabbit_todo.domain.task import Task
 from rabbit_todo.errors.rabbit_error import RabbitTodoError
 from rabbit_todo.storage.file_handler import FileHandler
 from rabbit_todo.storage.task_storage import TaskStorage

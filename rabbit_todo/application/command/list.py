@@ -7,18 +7,15 @@ import click
 
 # --- First Party Library ---
 from rabbit_todo.application.exit_with_error import exit_with_error
-from rabbit_todo.config import ROOT_DIR_PATH
 from rabbit_todo.errors.error_handler import get_message_from_exception
 from rabbit_todo.errors.rabbit_error import RabbitTodoError
-from rabbit_todo.storage.file_handler import FileHandler
 from rabbit_todo.storage.task_storage import TaskStorage
 
 
 @click.command("list")
-def list_task() -> None:
+@click.pass_obj
+def list_task(storage: TaskStorage) -> None:
     """Lists all tasks in the repository."""
-    file_handler = FileHandler(ROOT_DIR_PATH)
-    storage = TaskStorage(file_handler)
     try:
         # Get task instances
         tasks = storage.get_all()

@@ -4,10 +4,10 @@ import json
 # --- Third Party Library ---
 from click.testing import CliRunner
 
+# --- First Party Library ---
 from rabbit_todo.application.success_messages import add_task_success_message
 from rabbit_todo.application.success_messages import mark_task_as_complete_success_message
 from rabbit_todo.application.success_messages import remove_task_success_message
-# --- First Party Library ---
 from rabbit_todo.cli.cli import cli
 from rabbit_todo.config import ROOT_DIR_PATH
 from rabbit_todo.errors.error_code import TASK_NOT_FOUND_ERROR_CODE

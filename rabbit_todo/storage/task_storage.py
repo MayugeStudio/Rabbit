@@ -7,10 +7,10 @@ from __future__ import annotations
 # --- Standard Library ---
 import json
 
+# --- First Party Library ---
 from rabbit_todo.config import INITIAL_TASKS_CONTENT
 from rabbit_todo.config import TASKS_KEY
 from rabbit_todo.domain.task import Task
-# --- First Party Library ---
 from rabbit_todo.errors.error_code import FILE_CORRUPTED_ERROR_CODE
 from rabbit_todo.errors.error_code import TASK_NOT_FOUND_ERROR_CODE
 from rabbit_todo.errors.rabbit_error import RabbitTodoError
