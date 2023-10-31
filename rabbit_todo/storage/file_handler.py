@@ -9,8 +9,8 @@ from typing import Generator
 from typing import TextIO
 
 # --- First Party Library ---
-from rabbit_todo.io.json_config import TASKS_KEY
-from rabbit_todo.io.path_config import TASKS_FILE_NAME
+from rabbit_todo.config import TASKS_FILE_NAME
+from rabbit_todo.config import TASKS_KEY
 
 
 class FileHandler:
@@ -51,7 +51,3 @@ class FileHandler:
                 file.close()
         else:
             raise ValueError
-
-    def exists(self) -> bool:
-        """Returns true if the directory exists, false otherwise."""
-        return self._root.exists()

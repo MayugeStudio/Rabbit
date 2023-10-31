@@ -1,6 +1,7 @@
 """
-This module contains common messages used in the todo project.
+Success Messages
 """
+
 # --- Third Party Library ---
 from colorama import Fore
 

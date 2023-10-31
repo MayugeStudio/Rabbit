@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # --- First Party Library ---
-from rabbit_todo.core.task import Task
+from rabbit_todo.domain.task import Task
 
 
 class TestTask:
@@ -26,7 +26,6 @@ class TestTask:
         assert task.id == 1
         assert task.name == "Test Task"
         assert task.completed is True
-        assert task.notes == "Test Notes"
         assert task.created_at == now
         assert task.updated_at == now
 
@@ -36,15 +35,6 @@ class TestTask:
         assert data["id"] == 1
         assert data["name"] == "Test Task"
         assert data["completed"] is False
-        assert data["notes"] == ""
-
-    def test_to_dict_with_notes(self):
-        task = Task(1, "Test Task", notes="Test Notes")
-        data = task.to_dict()
-        assert data["id"] == 1
-        assert data["name"] == "Test Task"
-        assert data["completed"] is False
-        assert data["notes"] == "Test Notes"
 
     def test_to_dict_with_time(self):
         created_at = datetime.now().replace(microsecond=0)
@@ -54,7 +44,6 @@ class TestTask:
         assert data["id"] == 1
         assert data["name"] == "Test Task"
         assert data["completed"] is False
-        assert data["notes"] == ""
         assert data["created_at"] == created_at.strftime("%Y-%m-%d %H:%M:%S")
         assert data["updated_at"] == updated_at.strftime("%Y-%m-%d %H:%M:%S")
 

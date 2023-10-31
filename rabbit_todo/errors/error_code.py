@@ -1,0 +1,6 @@
+"""
+Error Codes
+"""
+
+FILE_CORRUPTED_ERROR_CODE = "0"
+TASK_NOT_FOUND_ERROR_CODE = "1"
