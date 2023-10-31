@@ -2,8 +2,6 @@
 ErrorHandler
 """
 
-from __future__ import annotations
-
 # --- Third Party Library ---
 from colorama import Fore
 
