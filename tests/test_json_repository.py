@@ -5,7 +5,7 @@ import json
 import pytest
 
 # --- First Party Library ---
-from rabbit_todo.common.rabbit_exception import RabbitTodoException
+from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.entity.task import Task
 from rabbit_todo.io.file_handler import FileHandler
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
@@ -49,7 +49,7 @@ class TestJsonRepository:
 
     def test_file_corrupted(self, rabbit_file_handler):
         repo = JsonTaskRepository(rabbit_file_handler, "Corrupted Json Content")
-        with pytest.raises(RabbitTodoException):
+        with pytest.raises(RabbitTodoError):
             repo.get_all()
 
     def test_get_task_by_id(self, json_content, rabbit_file_handler):

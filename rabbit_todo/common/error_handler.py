@@ -6,7 +6,7 @@ ErrorHandler
 from colorama import Fore
 
 # --- First Party Library ---
-from rabbit_todo.common.rabbit_exception import RabbitTodoException
+from rabbit_todo.common.rabbit_error import RabbitTodoError
 
 
 def error_prefix() -> str:
@@ -36,7 +36,7 @@ def get_error_message(code: str) -> str:
     return message_function()
 
 
-def get_message_from_exception(exception: RabbitTodoException) -> str:
+def get_message_from_exception(exception: RabbitTodoError) -> str:
     """Return error-message with error-prefix"""
     error_codes = exception.code.split(";")
     message = get_error_message(error_codes[0])

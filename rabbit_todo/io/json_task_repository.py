@@ -10,7 +10,7 @@ import json
 # --- First Party Library ---
 from rabbit_todo.common.error_code import FILE_CORRUPTED_ERROR_CODE
 from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
-from rabbit_todo.common.rabbit_exception import RabbitTodoException
+from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.config import INITIAL_TASKS_CONTENT
 from rabbit_todo.config import TASKS_KEY
 from rabbit_todo.entity.i_task_repository import ITaskRepository
@@ -31,7 +31,7 @@ class JsonTaskRepository(ITaskRepository):
                 content: dict[str, list[dict[str, int | bool | str]]] = json.load(file)
                 return content
         except json.decoder.JSONDecodeError:
-            raise RabbitTodoException(FILE_CORRUPTED_ERROR_CODE) from None
+            raise RabbitTodoError(FILE_CORRUPTED_ERROR_CODE) from None
 
     def _save_tasks(self, tasks: list[Task]) -> None:
         content = {"tasks": [t.to_dict() for t in tasks]}
@@ -51,7 +51,7 @@ class JsonTaskRepository(ITaskRepository):
             if task.id == task_id:
                 return task
 
-        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE) from None
+        raise RabbitTodoError(TASK_NOT_FOUND_ERROR_CODE) from None
 
     def add(self, task: Task) -> None:
         # Get tasks
@@ -74,7 +74,7 @@ class JsonTaskRepository(ITaskRepository):
                 self._save_tasks(tasks)
                 return
 
-        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE) from None
+        raise RabbitTodoError(TASK_NOT_FOUND_ERROR_CODE) from None
 
     def update(self, task: Task) -> None:
         # Get tasks
@@ -88,4 +88,4 @@ class JsonTaskRepository(ITaskRepository):
                 self._save_tasks(tasks)
                 return
 
-        raise RabbitTodoException(TASK_NOT_FOUND_ERROR_CODE) from None
+        raise RabbitTodoError(TASK_NOT_FOUND_ERROR_CODE) from None
