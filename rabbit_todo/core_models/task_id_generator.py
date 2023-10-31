@@ -3,7 +3,7 @@ ID Generator for Task class.
 """
 
 # --- First Party Library ---
-from rabbit_todo.core.i_task_repository import ITaskRepository
+from rabbit_todo.core_models.i_task_repository import ITaskRepository
 
 
 def generate_next_id(repository: ITaskRepository) -> int:
