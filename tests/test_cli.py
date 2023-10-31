@@ -5,7 +5,7 @@ import json
 from click.testing import CliRunner
 
 # --- First Party Library ---
-from rabbit_todo.cmd.cli import cli
+from rabbit_todo.cli.cli import cli
 from rabbit_todo.common.error_handler import ERROR_MESSAGES
 from rabbit_todo.common.error_handler import TASK_NOT_FOUND_ERROR_CODE
 from rabbit_todo.common.messages import add_task_success_message
