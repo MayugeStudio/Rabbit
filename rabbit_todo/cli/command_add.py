@@ -10,8 +10,8 @@ from rabbit_todo.cli.exit_with_error import exit_with_error
 from rabbit_todo.common.error_handler import get_message_from_exception
 from rabbit_todo.common.rabbit_error import RabbitTodoError
 from rabbit_todo.config import ROOT_DIR_PATH
+from rabbit_todo.entity.generate_next_id import generate_next_id
 from rabbit_todo.entity.task import Task
-from rabbit_todo.entity.task_id_generator import generate_next_id
 from rabbit_todo.io.file_handler import FileHandler
 from rabbit_todo.io.json_task_repository import JsonTaskRepository
 from rabbit_todo.success_messages import add_task_success_message

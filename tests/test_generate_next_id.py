@@ -4,9 +4,9 @@ import pytest
 # --- First Party Library ---
 from rabbit_todo.common.error_code import TASK_NOT_FOUND_ERROR_CODE
 from rabbit_todo.common.rabbit_error import RabbitTodoError
+from rabbit_todo.entity.generate_next_id import generate_next_id
 from rabbit_todo.entity.i_task_repository import ITaskRepository
 from rabbit_todo.entity.task import Task
-from rabbit_todo.entity.task_id_generator import generate_next_id
 
 
 class InMemoryTaskRepository(ITaskRepository):
