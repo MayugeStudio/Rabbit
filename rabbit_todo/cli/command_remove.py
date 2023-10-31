@@ -20,14 +20,14 @@ from rabbit_todo.success_messages import remove_task_success_message
 def remove_task(task_id: int) -> None:
     """Removes a task with the given ID from the repository."""
     file_handler = FileHandler(ROOT_DIR_PATH)
-    repo = TaskStorage(file_handler)
+    storage = TaskStorage(file_handler)
 
     try:
         # Get task instance
-        task = repo.get_by_id(task_id)
+        task = storage.get_by_id(task_id)
 
         # Execute
-        repo.remove(task)
+        storage.remove(task)
 
         # Message
         print(remove_task_success_message(task.name))

@@ -18,10 +18,10 @@ from rabbit_todo.io.task_storage import TaskStorage
 def list_task() -> None:
     """Lists all tasks in the repository."""
     file_handler = FileHandler(ROOT_DIR_PATH)
-    repo = TaskStorage(file_handler)
+    storage = TaskStorage(file_handler)
     try:
         # Get task instances
-        tasks = repo.get_all()
+        tasks = storage.get_all()
 
         # Execute
         for task in tasks:

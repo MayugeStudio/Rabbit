@@ -22,15 +22,15 @@ from rabbit_todo.success_messages import add_task_success_message
 def add_task(task_name: str) -> None:
     """Adds a new task with the given name to the repository."""
     file_handler = FileHandler(ROOT_DIR_PATH)
-    repo = TaskStorage(file_handler)
+    storage = TaskStorage(file_handler)
 
     try:
         # Create task instance
-        next_id = generate_next_id(repo)
+        next_id = generate_next_id(storage)
         task = Task(next_id, task_name)
 
         # Execute
-        repo.add(task)
+        storage.add(task)
 
         # Message
         print(add_task_success_message(task.name))
