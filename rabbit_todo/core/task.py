@@ -23,13 +23,11 @@ class Task:
         self,
         id_: int,
         name: str,
-        notes: str = "",
         created_at: datetime | None = None,
         updated_at: datetime | None = None,
     ) -> None:
         self._id = id_
         self._name = name
-        self._notes = notes
         self._completed = False
         self._created_at = created_at if created_at else datetime.now().replace(microsecond=0)
         self._updated_at = updated_at if updated_at else datetime.now().replace(microsecond=0)
@@ -41,13 +39,12 @@ class Task:
             id_ = int(data["id"])
             name = str(data["name"])
             completed = bool(data["completed"])
-            notes = str(data["notes"])
             created_at = datetime.strptime(_check_str_key(data, "created_at"), "%Y-%m-%d %H:%M:%S")
             updated_at = datetime.strptime(_check_str_key(data, "updated_at"), "%Y-%m-%d %H:%M:%S")
         except (TypeError, KeyError, ValueError) as e:
             raise ValueError(f"Invalid data for creating a Task: {e}") from e
 
-        instance = cls(id_, name, notes=notes, created_at=created_at, updated_at=updated_at)
+        instance = cls(id_, name, created_at=created_at, updated_at=updated_at)
         instance._completed = completed
         return instance
 
@@ -57,7 +54,6 @@ class Task:
             "id": self._id,
             "name": self._name,
             "completed": self._completed,
-            "notes": self._notes,
             "created_at": self._created_at.strftime("%Y-%m-%d %H:%M:%S"),
             "updated_at": self._updated_at.strftime("%Y-%m-%d %H:%M:%S"),
         }
@@ -71,11 +67,6 @@ class Task:
     def name(self) -> str:
         """Returns the name of the task"""
         return self._name
-
-    @property
-    def notes(self) -> str:
-        """Returns the notes of the task"""
-        return self._notes
 
     @property
     def completed(self) -> bool:
